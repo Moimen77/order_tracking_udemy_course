@@ -20,6 +20,13 @@ class AppThemes {
         titleLarge: AppStyles.primaryHeadLinesStyle,
         titleMedium: AppStyles.subtitlesStyles,
       ),
+      appBarTheme: AppBarTheme(
+        backgroundColor: AppColors.primaryColor,
+        centerTitle: true,
+        titleTextStyle: AppStyles.primaryHeadLinesStyle.copyWith(
+          color: AppColors.whiteColor,
+        ),
+      ),
       buttonTheme: ButtonThemeData(
         buttonColor: AppColors.primaryColor,
         disabledColor: AppColors.secondaryColor,
