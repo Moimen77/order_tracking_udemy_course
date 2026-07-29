@@ -28,6 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   late TextEditingController email;
   late TextEditingController password;
+  bool isPasswordVisible = true;
 
   @override
   void initState() {
@@ -133,10 +134,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         hintText: "Enter Your Password",
                         controller: password,
                         suffixIcon: Icon(
-                          Icons.remove_red_eye,
+                          isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
                           color: AppColors.greyColor,
                           size: 20.sp,
                         ),
+                        onIconTap: () {
+                          setState(() {
+                            isPasswordVisible = !isPasswordVisible;
+                          });
+                        },
+                        isPassword: isPasswordVisible,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Enter Your Password";
