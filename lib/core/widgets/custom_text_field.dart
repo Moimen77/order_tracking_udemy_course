@@ -31,6 +31,7 @@ class CustomTextField extends StatelessWidget {
           controller: controller,
           validator: validator,
           autofocus: false,
+          readOnly: onTap != null,
           onTap: onTap,
           obscureText: isPassword,
           cursorColor: AppColors.primaryColor,
