@@ -7,4 +7,6 @@ class AppRoutes {
 
   static const String productScreen = '/productScreen';
   static const String addressScreen = '/addressScreen';
+  static const String addOrder = '/addOrderScreen';
+  static const String placePicked = '/placePicked';
 }

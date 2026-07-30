@@ -1,6 +1,8 @@
 import 'package:go_router/go_router.dart';
 
 import 'package:practical_google_maps_example/core/routing/app_routes.dart';
+import 'package:practical_google_maps_example/features/AddOrder/AddOrderScreen.dart';
+import 'package:practical_google_maps_example/features/AddOrder/PlacePickerPage.dart';
 import 'package:practical_google_maps_example/features/auth/login_screen.dart';
 import 'package:practical_google_maps_example/features/auth/register_screen.dart';
 import 'package:practical_google_maps_example/features/homeScreen/HomeScreen.dart';
@@ -29,5 +31,15 @@ class RouterGenerationConfig {
       path: AppRoutes.mainScreen,
       builder: (context, state) => const homeScreen(),
     ),
+    GoRoute(
+      name: AppRoutes.addOrder,
+      path: AppRoutes.addOrder,
+      builder: (context, state) => const AddOrderScreen(),
+    ),
+    GoRoute(
+      name: AppRoutes.placePicked,
+      path: AppRoutes.placePicked,
+      builder: (context, state) => const Placepickerpage(),
+    )
   ]);
 }

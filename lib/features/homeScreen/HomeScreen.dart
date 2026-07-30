@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:practical_google_maps_example/core/routing/app_routes.dart';
 import 'package:practical_google_maps_example/core/styling/app_styles.dart';
 
 class homeScreen extends StatefulWidget {
@@ -12,10 +14,7 @@ class homeScreen extends StatefulWidget {
 }
 
 class _homeScreenState extends State<homeScreen> {
-  final List<Map<String, dynamic>> items = [
-    {'title': 'Orders', 'onPressed': () => print('Orders pressed')},
-    {'title': 'Add Order', 'onPressed': () => print('Add Order pressed')},
-  ];
+  final List<String> items = ['Orders', 'Add Order'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,13 +34,19 @@ class _homeScreenState extends State<homeScreen> {
           itemCount: items.length,
           itemBuilder: (context, index) {
             return GestureDetector(
-              onTap: items[index]['onPressed'],
+              onTap: () {
+                if (items[index] == 'Orders') {
+                  print('Orders pressed');
+                } else if (items[index] == 'Add Order') {
+                  GoRouter.of(context).pushNamed(AppRoutes.addOrder);
+                }
+              },
               child: Card(
                 color: Theme.of(context).primaryColor,
                 margin: const EdgeInsets.all(5.0),
                 child: Center(
                   child: Text(
-                    items[index]['title']!,
+                    items[index],
                     style: AppStyles.black16w500Style.copyWith(fontSize: 23.sp),
                   ),
                 ),
