@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:practical_google_maps_example/core/routing/app_routes.dart';
 import 'package:practical_google_maps_example/core/styling/app_assets.dart';
 import 'package:practical_google_maps_example/core/styling/app_styles.dart';
@@ -135,9 +136,7 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                       buttonText: "Add Order Location",
                       isLoading: false,
                       onPress: () {
-                        locationOrder =
-                            Navigator.pushNamed(context, AppRoutes.placePicked)
-                                as String?;
+                        GoRouter.of(context).pushNamed(AppRoutes.placePicked);
                         setState(() {});
                       }),
 

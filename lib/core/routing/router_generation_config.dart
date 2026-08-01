@@ -2,7 +2,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:practical_google_maps_example/core/routing/app_routes.dart';
 import 'package:practical_google_maps_example/features/AddOrder/AddOrderScreen.dart';
-import 'package:practical_google_maps_example/features/AddOrder/PlacePickerPage.dart';
+import 'package:practical_google_maps_example/features/PlacePicker/view/MapPickerPage.dart';
 import 'package:practical_google_maps_example/features/auth/login_screen.dart';
 import 'package:practical_google_maps_example/features/auth/register_screen.dart';
 import 'package:practical_google_maps_example/features/homeScreen/HomeScreen.dart';
@@ -39,7 +39,7 @@ class RouterGenerationConfig {
     GoRoute(
       name: AppRoutes.placePicked,
       path: AppRoutes.placePicked,
-      builder: (context, state) => const Placepickerpage(),
+      builder: (context, state) => const MapPickerPage(),
     )
   ]);
 }
