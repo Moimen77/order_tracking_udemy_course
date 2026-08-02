@@ -135,8 +135,13 @@ class _AddOrderScreenState extends State<AddOrderScreen> {
                   PrimayButtonWidget(
                       buttonText: "Add Order Location",
                       isLoading: false,
-                      onPress: () {
-                        GoRouter.of(context).pushNamed(AppRoutes.placePicked);
+                      onPress: () async {
+                        final result = await GoRouter.of(context)
+                            .pushNamed(AppRoutes.placePicked);
+                        print("Result: $result");
+                        if (result is String) {
+                          locationOrder = result;
+                        }
                         setState(() {});
                       }),
 

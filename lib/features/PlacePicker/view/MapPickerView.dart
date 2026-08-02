@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:go_router/go_router.dart';
 import 'package:practical_google_maps_example/core/utils/animated_snack_dialog.dart';
 import 'package:practical_google_maps_example/core/utils/app_status.dart';
 import 'package:practical_google_maps_example/features/PlacePicker/view/MapPickerPage.dart';
-
 import '../cubit/map_picker_cubit.dart';
 import '../cubit/map_picker_state.dart';
 
@@ -35,7 +35,7 @@ class _MapPickerViewState extends State<MapPickerView> {
           if (state.selectedLocation != null) {
             mapController.move(
               state.selectedLocation!,
-              15,
+              10,
             );
           }
         },
@@ -92,14 +92,7 @@ class _MapPickerViewState extends State<MapPickerView> {
                     if (location == null) {
                       return;
                     }
-
-                    debugPrint(
-                      'Latitude: ${location.latitude}',
-                    );
-
-                    debugPrint(
-                      'Longitude: ${location.longitude}',
-                    );
+                    GoRouter.of(context).pop(state.selctedLocationName);
                   },
                   child: const Text(
                     'Confirm Location',
@@ -116,6 +109,68 @@ class _MapPickerViewState extends State<MapPickerView> {
                   child: const Icon(
                     Icons.my_location,
                   ),
+                ),
+              ),
+              Positioned(
+                top: 20,
+                left: 16,
+                right: 16,
+                child: Column(
+                  children: [
+                    TextField(
+                      onChanged: context.read<MapPickerCubit>().onSearchChanged,
+                      decoration: InputDecoration(
+                        hintText: 'Search for a place...',
+                        prefixIcon: const Icon(
+                          Icons.search,
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                    BlocBuilder<MapPickerCubit, MapPickerState>(
+                      builder: (context, state) {
+                        if (state.searchResults.isEmpty) {
+                          return const SizedBox();
+                        }
+
+                        return Container(
+                          margin: const EdgeInsets.only(top: 8),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: state.searchResults.length,
+                            itemBuilder: (context, index) {
+                              final place = state.searchResults[index];
+
+                              return ListTile(
+                                leading: const Icon(
+                                  Icons.location_on,
+                                ),
+                                title: Text(
+                                  place.displayName,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                onTap: () {
+                                  context
+                                      .read<MapPickerCubit>()
+                                      .selectPlace(place);
+                                },
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
             ],
