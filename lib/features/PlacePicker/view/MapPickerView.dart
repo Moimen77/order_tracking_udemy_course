@@ -92,7 +92,11 @@ class _MapPickerViewState extends State<MapPickerView> {
                     if (location == null) {
                       return;
                     }
-                    GoRouter.of(context).pop(state.selctedLocationName);
+                    GoRouter.of(context).pop({
+                      'location': state.selctedLocationName,
+                      'latitude': location.latitude,
+                      'longitude': location.longitude,
+                    });
                   },
                   child: const Text(
                     'Confirm Location',

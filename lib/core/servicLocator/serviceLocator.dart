@@ -1,4 +1,6 @@
 import 'package:get_it/get_it.dart';
+import 'package:practical_google_maps_example/features/AddOrder/cubit/add_order_cubit.dart';
+import 'package:practical_google_maps_example/features/AddOrder/repo/AddOrderRepo.dart';
 import 'package:practical_google_maps_example/features/PlacePicker/cubit/map_picker_cubit.dart';
 import 'package:practical_google_maps_example/features/PlacePicker/repo/MapPickerRepo.dart';
 import 'package:practical_google_maps_example/features/auth/cupit/authCupit.dart';
@@ -28,6 +30,16 @@ void setupDependencies() {
   getIt.registerFactory<MapPickerCubit>(
     () => MapPickerCubit(
       getIt<MapPickerRepository>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<AddOrderRepo>(
+    () => AddOrderRepo(),
+  );
+
+  getIt.registerFactory<AddOrderCubit>(
+    () => AddOrderCubit(
+      getIt<AddOrderRepo>(),
     ),
   );
 }
