@@ -3,6 +3,8 @@ import 'package:practical_google_maps_example/features/AddOrder/cubit/add_order_
 import 'package:practical_google_maps_example/features/AddOrder/repo/AddOrderRepo.dart';
 import 'package:practical_google_maps_example/features/PlacePicker/cubit/map_picker_cubit.dart';
 import 'package:practical_google_maps_example/features/PlacePicker/repo/MapPickerRepo.dart';
+import 'package:practical_google_maps_example/features/OrderScreen/cubit/order_cubit.dart';
+import 'package:practical_google_maps_example/features/OrderScreen/repo/OrderRepo.dart';
 import 'package:practical_google_maps_example/features/auth/cupit/authCupit.dart';
 import 'package:practical_google_maps_example/features/auth/cupit/authStates.dart';
 import 'package:practical_google_maps_example/features/auth/repo/AuthRepo.dart';
@@ -40,6 +42,16 @@ void setupDependencies() {
   getIt.registerFactory<AddOrderCubit>(
     () => AddOrderCubit(
       getIt<AddOrderRepo>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<OrderRepo>(
+    () => OrderRepo(),
+  );
+
+  getIt.registerFactory<OrderCubit>(
+    () => OrderCubit(
+      getIt<OrderRepo>(),
     ),
   );
 }

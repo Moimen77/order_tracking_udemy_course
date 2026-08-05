@@ -36,7 +36,7 @@ class _homeScreenState extends State<homeScreen> {
             return GestureDetector(
               onTap: () {
                 if (items[index] == 'Orders') {
-                  print('Orders pressed');
+                  GoRouter.of(context).pushNamed(AppRoutes.orderScreen);
                 } else if (items[index] == 'Add Order') {
                   GoRouter.of(context).pushNamed(AppRoutes.addOrder);
                 }
